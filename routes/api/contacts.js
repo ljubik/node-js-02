@@ -15,8 +15,8 @@ router.use((req, res, next) => {
 router.get('/', async (req, res, next) => {
   console.log('Hi')
   try {
-    const cats = await Contacts.getAll()
-    return res.json({ status: 'success', code: 200, data: { cats } })
+    const cont = await Contacts.getAll()
+    return res.json({ status: 'success', code: 200, data: { cont } })
   } catch (e) {
     next(e)
   }
