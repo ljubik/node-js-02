@@ -2,15 +2,15 @@ const Joi = require('joi')
 
 const schemaCreateContact = Joi.object({
   name: Joi.string().alphanum().min(3).max(30).required(),
-  age: Joi.number().integer().min(0).max(35).required(),
-  isVaccinated: Joi.boolean().optional(),
+  email: Joi.string(),
+  phone: Joi.number().integer().min(10).max(35).required(),
 })
 
 const schemaUpdateContact = Joi.object({
-  name: Joi.string().alphanum().min(3).max(30).optional(),
-  age: Joi.number().integer().min(0).max(35).optional(),
-  isVaccinated: Joi.boolean().optional(),
-}).or('name', 'age', 'isVaccinated')
+  name: Joi.string(),
+  email: Joi.string(),
+  phone: Joi.string(),
+}).min(1)
 
 const schemaUpdateStatusContact = Joi.object({
   isVaccinated: Joi.boolean().required(),

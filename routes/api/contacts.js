@@ -12,7 +12,7 @@ router.use((req, res, next) => {
   next()
 })
 
-router.get('/api/contacts/', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   console.log('Hi')
   try {
     const cats = await Contacts.getAll()
@@ -28,7 +28,7 @@ router.get('/api/contacts/:id', async (req, res, next) => {
     if (cont) {
       return res.json({ status: 'success', code: 200, data: { cont } })
     }
-    return res.json({ status: 'error', code: 404, message: 'Not found' })
+    return res.json({ status: 'error', code: 404, message: 'Not found contact' })
   } catch (e) {
     next(e)
   }
