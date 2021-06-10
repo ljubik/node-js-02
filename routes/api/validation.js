@@ -2,41 +2,19 @@ const Joi = require('joi')
 const mongoose = require('mongoose')
 
 const schemaCreateContact = Joi.object({
-  name: {
-    type: String,
-    required: [true, 'Set name for contact'],
-  },
-  email: {
-    type: String,
-  },
-  phone: {
-    type: String,
-  },
-  favorite: {
-    type: Boolean,
-    default: false,
-  },
+  name: Joi.string().alphanum().min(3).max(30).required(),
+  age: Joi.number().integer().min(0).max(35).required(),
+  isVaccinated: Joi.boolean().optional(),
 })
 
 const schemaUpdateContact = Joi.object({
-  name: {
-    type: String,
-    required: [true, 'Set name for contact'],
-  },
-  email: {
-    type: String,
-  },
-  phone: {
-    type: String,
-  },
-  favorite: {
-    type: Boolean,
-    default: false,
-  },
-}).min(1)
+  name: Joi.string().alphanum().min(3).max(30).optional(),
+  age: Joi.number().integer().min(0).max(35).optional(),
+  isVaccinated: Joi.boolean().optional(),
+}).or('name', 'age', 'isVaccinated')
 
 const schemaUpdateStatusContact = Joi.object({
-  favorite: Joi.boolean().required(),
+  isVaccinated: Joi.boolean().required(),
 })
 
 const validate = async (schema, obj, next) => {
