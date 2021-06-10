@@ -36,7 +36,7 @@ const schemaUpdateContact = Joi.object({
 }).min(1)
 
 const schemaUpdateStatusContact = Joi.object({
-  isVaccinated: Joi.boolean().required(),
+  favorite: Joi.boolean().required(),
 })
 
 const validate = async (schema, obj, next) => {
