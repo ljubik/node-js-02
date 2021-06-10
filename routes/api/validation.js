@@ -1,15 +1,37 @@
 const Joi = require('joi')
 
 const schemaCreateContact = Joi.object({
-  name: Joi.string().alphanum().min(3).max(30).required(),
-  email: Joi.string(),
-  phone: Joi.number().integer().min(10).max(35).required(),
+  name: {
+    type: String,
+    required: [true, 'Set name for contact'],
+  },
+  email: {
+    type: String,
+  },
+  phone: {
+    type: String,
+  },
+  favorite: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const schemaUpdateContact = Joi.object({
-  name: Joi.string(),
-  email: Joi.string(),
-  phone: Joi.string(),
+  name: {
+    type: String,
+    required: [true, 'Set name for contact'],
+  },
+  email: {
+    type: String,
+  },
+  phone: {
+    type: String,
+  },
+  favorite: {
+    type: Boolean,
+    default: false,
+  },
 }).min(1)
 
 const schemaUpdateStatusContact = Joi.object({
