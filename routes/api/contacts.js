@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 // const Contacts = require('../../model/index.js')
-const ctrl = require('../../controllers/users.js')
+const ctrl = require('../../controllers/contacts.js')
 const {
   validationCreateContact,
   validationUpdateContact,

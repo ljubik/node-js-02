@@ -1,10 +1,10 @@
-const Users = require('../repositories/users')
+const Contacts = require('../repositories/contacts')
 
 const getAll = async (req, res, next) => {
   console.log('Hi')
   try {
-    const users = await Users.getAll()
-    return res.json({ status: 'success', code: 200, data: { users } })
+    const contacts = await Contacts.getAll()
+    return res.json({ status: 'success', code: 200, data: { contacts } })
   } catch (e) {
     next(e)
   }
@@ -12,10 +12,10 @@ const getAll = async (req, res, next) => {
 
 const getById = async (req, res, next) => {
   try {
-    const user = await Users.getById(req.params.id)
-    if (user) {
-      console.log(user)
-      return res.json({ status: 'success', code: 200, data: { user } })
+    const contact = await Contacts.getById(req.params.id)
+    if (contact) {
+      console.log(contact)
+      return res.json({ status: 'success', code: 200, data: { contact } })
     }
     return res.json({ status: 'error', code: 404, message: 'Not found' })
   } catch (e) {
@@ -25,8 +25,8 @@ const getById = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
-    const user = await Users.create(req.body)
-    return res.status(201).json({ status: 'success', code: 201, data: { user } })
+    const contact = await Contacts.create(req.body)
+    return res.status(201).json({ status: 'success', code: 201, data: { contact } })
   } catch (e) {
     if (e.name === 'ValidationError') {
       e.status = 400
@@ -37,9 +37,9 @@ const create = async (req, res, next) => {
 
 const remove = async (req, res, next) => {
   try {
-    const user = await Users.remove(req.params.id)
-    if (user) {
-      return res.json({ status: 'success', code: 200, data: { user } })
+    const contact = await Contacts.remove(req.params.id)
+    if (contact) {
+      return res.json({ status: 'success', code: 200, data: { contact } })
     }
     return res.json({ status: 'error', code: 404, message: 'Not found' })
   } catch (e) {
@@ -49,9 +49,9 @@ const remove = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   try {
-    const user = await Users.update(req.params.id, req.body)
-    if (user) {
-      return res.json({ status: 'success', code: 200, data: { user } })
+    const contact = await Contacts.update(req.params.id, req.body)
+    if (contact) {
+      return res.json({ status: 'success', code: 200, data: { contact } })
     }
     return res.json({ status: 'error', code: 404, message: 'Not found' })
   } catch (e) {
