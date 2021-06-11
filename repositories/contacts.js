@@ -1,4 +1,4 @@
-const User = require('../model/index.js')
+const User = require('../model/contacts.js')
 
 const getAll = async () => {
   const results = await User.find()
