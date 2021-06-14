@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const userSchema = new Schema(
+const contactSchema = new Schema(
   {
     name: {
       type: String,
@@ -41,15 +41,15 @@ const userSchema = new Schema(
   },
 )
 
-userSchema.virtual('info').get(function () {
+contactSchema.virtual('info').get(function () {
   return `This is cat ${this.name} ${this.age} years old`
 })
 
-userSchema.path('name').validate((value) => {
+contactSchema.path('name').validate((value) => {
   const re = /[A-Z]\w+/g
   return re.test(String(value))
 })
 
-const User = model('user', userSchema)
+const Contact = model('contact', contactSchema)
 
-module.exports = User
+module.exports = Contact
