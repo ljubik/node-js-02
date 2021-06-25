@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose')
 // const { Gender } = require('../helpers/constants')
 const bcrypt = require('bcryptjs')
 const SALT_WORK_FACTOR = 8
+const gr = require('gravatar')
 
 const userSchema = new Schema(
   {
@@ -22,6 +23,12 @@ const userSchema = new Schema(
     },
     token: { type: String, default: null },
     name: { type: String, minlength: 2, default: 'Guest' },
+    avatarURL: {
+      type: String,
+      default: function () {
+        return gr.url(this.email, { s: '250' }, true)
+      },
+    },
   },
   {
     versionKey: false,
